@@ -1,36 +1,29 @@
 #include <stdio.h>
 
 /**
-* main -Entry point
-* Return: 0 (success)
-*/
-int main(void)
-{
-int d, t, f, m;
+ * main -Entry point
+ * Return: 0(success
+ */
 
-for (d = 0; d < 10; d++)
+int main(void)
+
 {
-for (t = 0; t < 10; t++)
+int m, n;
+
+for (m = 0; n <= 98; n++)
 {
-for (f = 0; f < 10; f++)
+
+for (m = n + 1; m <= 99; m++)
 {
-for (m = 0; m < 10; m++)
-{
-if (d < t || (d == t && f < m))
-{
-putchar(d + '0');
-putchar(t + '0');
+putchar((m / 10) + '0');
+putchar((m % 10) + '0');
 putchar(' ');
-putchar(f + '0');
-putchar(m + '0');
-if (d != 9 || t != 8 || f != 9 || m != 9)
-{
+putchar((n / 10) + '0');
+putchar((n % 10) + '0');
+if (m == 98 && n == 99)
+continue;
 putchar(',');
 putchar(' ');
-}
-}
-}
-}
 }
 }
 putchar('\n');
