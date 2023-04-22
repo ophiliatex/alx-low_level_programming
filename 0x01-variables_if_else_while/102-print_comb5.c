@@ -23,7 +23,7 @@ putchar(t + '0');
 putchar(' ');
 putchar(f + '0');
 putchar(m + '0');
-if (d != 8 || t != 7 || f != 8 || m != 8)
+if (d != 9 || t != 8 || f != 9 || m != 9)
 {
 putchar(',');
 putchar(' ');

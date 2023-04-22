@@ -17,7 +17,7 @@ for (f = t + 1; f < 10; f++)
 putchar(d + '0');
 putchar(t + '0');
 putchar(f + '0');
-if (d != 5 || t != 6 || f != 7)
+if (d != 7 || t != 8 || f != 9)
 {
 putchar(',');
 putchar(' ');
