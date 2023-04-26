@@ -1,9 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 /**
  * main - fibonacci <3
- *
- * Purpose - no hardcode
- *
  * Return:  (Success)
  */
 int main(void)
@@ -20,8 +18,8 @@ printf("%lu", befr);
 for (i = 1; i < 91; i++)
 {
 printf(", %lu", aftr);
-aft += befr;
-bef = aft - befr;
+aftr += befr;
+befr = aftr - befr;
 }
 befr1 = (befr / l);
 befr2 = (befr % l);
