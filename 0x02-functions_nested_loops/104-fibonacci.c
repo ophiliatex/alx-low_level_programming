@@ -2,7 +2,7 @@
 #include <stdlib.h>
 /**
  * main - fibonacci <3
- * Return:  (Success)
+ * Return: 0 (Success)
  */
 int main(void)
 {
@@ -32,7 +32,7 @@ printf("%lu", aftr2 % l);
 aftr1 = aftr1 + befr1;
 befr1 = aftr1 - befr1;
 aftr2 = aftr2 + befr2;
-bef2 = aftr2 - befr2;
+befr2 = aftr2 - befr2;
 }
 printf("\n");
 return (0);
