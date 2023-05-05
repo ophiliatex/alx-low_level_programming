@@ -6,7 +6,7 @@
  * @dest: Pointer to the destination of the string
  * @src: Pointer to the source of the string
  * @n: Number of byte to be used
- * Retrun: Pointer to @dest
+ * Return: Pointer to @dest.
  */
 
 char *_strncpy(char *dest, char *src, int n)
