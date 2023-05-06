@@ -5,13 +5,13 @@
 #include <stdio.h>
 
 /**
- * isPrintableASCII - determines if n is a printable ASCII char
- * @n: integer
+ * isPrintableASCII - determines if num is a printable ASCII char
+ * @num: integer
  * Return: 1 if true, 0 if false
  */
-int isPrintableASCII(int n)
+int isPrintableASCII(int num)
 {
-	return (n >= 32 && n <= 126);
+	return (num >= 32 && num <= 126);
 }
 
 /**
@@ -22,17 +22,17 @@ int isPrintableASCII(int n)
  */
 void printHexes(char *b, int start, int end)
 {
-	int i = 0;
+	int index = 0;
 
-	while (i < 10)
+	while (index < 10)
 	{
-		if (i < end)
-			printf("%02x", *(b + start + i));
+		if (index < end)
+			printf("%02x", *(b + start + index));
 		else
 			printf("  ");
-		if (i % 2)
+		if (index % 2)
 			printf(" ");
-		i++;
+		index++;
 	}
 }
 
@@ -45,15 +45,15 @@ void printHexes(char *b, int start, int end)
  */
 void printASCII(char *b, int start, int end)
 {
-	int ch, i = 0;
+	int charc, index = 0;
 
-	while (i < end)
+	while (index < end)
 	{
-		ch = *(b + i + start);
-		if (!isPrintableASCII(ch))
-			ch = 46;
-		printf("%c", ch);
-		i++;
+		charc = *(b + index + start);
+		if (!isPrintableASCII(charc))
+			charc = 46;
+		printf("%c", charc);
+		index++;
 	}
 }
 
