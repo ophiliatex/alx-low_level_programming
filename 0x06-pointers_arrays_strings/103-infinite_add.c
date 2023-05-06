@@ -6,49 +6,44 @@
  * @n1: First number
  * @n2: Second number
  * @r: buffer that the function will use to store the result
- * @size_r: buffer size
- * Return: Pointer to the result
+ * @size_r: Buffer size
+ * Return: Pointer
  */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-int i, a, b, c, d, e, f, g, h, remain;
+	int i, a, k, l, x, w;
 
-i = a = b = c = d = e = f = g = h = remain = 0;
-while (n1[i] != '\0')
-i++;
-while (n2[a] != '\0')
-a++;
-if (i > size_r || a > size_r)
-return (0);
-i--;
-a--;
-while (i >= 0 || a >= 0)
-{
-b = (i >= 0) ? n1[i] - '0' : 0;
-c = (a >= 0) ? n2[a] - '0' : 0;
-d = b + c + remain;
-e = d % 10;
-f = d / 10;
-r[g] = e + '0';
-remain = f;
-g++;
-i--;
-a--;
-}
-if (remain > 0)
-{
-if (g >= size_r)
-return (0);
-r[g] = remain+ '0';
-g++;
-}
-r[g] = '\0';
-for (h = 0; h < g / 2; h++)
-{
-b = r[h];
-r[h] = r[g - h - 1];
-r[g - h - 1] = b;
-}
-return (r);
+	for (i = 0; n1[i]; i++)
+		;
+	for (a = 0; n2[a]; a++)
+		;
+	if (i > size_r || a > size_r)
+		return (0);
+	x = 0;
+	for (i -= 1, a -= 1, k = 0; k < size_r - 1; i--, a--, k++)
+	{
+		w = x;
+		if (i >= 0)
+			w += n1[i] - '0';
+		if (a >= 0)
+			w += n2[a] - '0';
+		if (i < 0 && a < 0 && w == 0)
+		{
+			break;
+		}
+		x = w / 10;
+		r[k] = w % 10 + '0';
+	}
+	r[k] = '\0';
+	if (i >= 0 || a >= 0 || x)
+		return (0);
+	for (k -= 1, l = 0; l < k; k--, l++)
+	{
+		x = r[k];
+		r[k] = r[l];
+		r[l] = x;
+	}
+	return (r);
+
 }
