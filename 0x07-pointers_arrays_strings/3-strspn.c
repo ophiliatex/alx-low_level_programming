@@ -7,10 +7,10 @@
  * @accept: input
  * Return: 0 (success)
  */
- 
+
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned i, d, digit, check;
+	unsigned int i, d, digit, check;
 
 	digit = 0;
 
@@ -26,7 +26,7 @@ unsigned int _strspn(char *s, char *accept)
 				check = 1;
 			}
 		}
-		
+
 		if (check == 0)
 			return (digit);
 	}
