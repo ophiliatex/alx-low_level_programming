@@ -11,28 +11,25 @@
 
 char *_strdup(char *str)
 {
-	unsigned int t = 0, d = 1;
 	char *p;
+	unsigned int i, d;
+
+	i = 0;
+	d = 0;
 
 	if (str == NULL)
 		return (NULL);
 
 	while (str[d])
-	{
 		d++;
-	}
 
-	p = malloc((sizeof(char) * d) + 1);
+	p = malloc(sizeof(char) * (d + 1));
 
 	if (p == NULL)
 		return (NULL);
 
-	while (t < d)
-	{
-		p[t] = str[t];
-		t++;
-	}
-	
-	p[t] = '\n';
+	while ((p[i] = str[i]) != '\0')
+		i++;
+
 	return (p);
 }
