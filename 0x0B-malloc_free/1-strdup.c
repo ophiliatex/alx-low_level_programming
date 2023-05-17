@@ -11,7 +11,7 @@
 
 char *_strdup(char *str)
 {
-	int t = 0, d = 1;
+	unsigned int t = 0, d = 1;
 	char *p;
 
 	if (str == NULL)
@@ -32,7 +32,7 @@ char *_strdup(char *str)
 		p[t] = str[t];
 		t++;
 	}
-
+	
 	p[t] = '\n';
 	return (p);
 }
