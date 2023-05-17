@@ -7,7 +7,7 @@
  * all the agrs of a program
  * @ac: the argument count
  * @av: The argument vector
- * Returns: A pointer to a new string or NULL
+ * Return: A pointer to a new string or NULL
  */
 
 char *argstostr(int ac, char **av)
