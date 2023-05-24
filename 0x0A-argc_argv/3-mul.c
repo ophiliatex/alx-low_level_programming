@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
 /**
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	else
 	{
 		printf("Error\n");
-		return (10);
+		return (1);
 	}
 
 	return (0);
