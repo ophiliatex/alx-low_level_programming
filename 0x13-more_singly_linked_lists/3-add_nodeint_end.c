@@ -26,8 +26,8 @@ newNode->n = n;
 newNode->next = NULL;
 if (*head == NULL)
 {
-    *head = newNode;
-    return (newNode);
+*head = newNode;
+return (newNode);
 }
 
 lastNode = *head;

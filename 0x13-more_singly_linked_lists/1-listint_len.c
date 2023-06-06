@@ -20,8 +20,8 @@ size_t elements_number = 0;
 
 while (h != NULL)
 {
-    h = h->next;
-    elements_number++;
+h = h->next;
+elements_number++;
 }
 return (elements_number++);
 }
