@@ -1,10 +1,7 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
- * listint_len: returns the number of elements of a list
+ * listint_len - returns the number of elements of a list
  *
  * @h: points to the  node
  * 

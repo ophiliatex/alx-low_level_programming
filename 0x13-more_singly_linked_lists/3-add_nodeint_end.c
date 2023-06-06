@@ -1,10 +1,7 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
- * add_nodeint_end: new node to be added a list
+ * add_nodeint_end - new node to be added a list
  *
  * @head: pointer  to the  head pointer
  * 
