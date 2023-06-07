@@ -10,7 +10,7 @@
 size_t print_listint_safe(const listint_t *head)
 {
 size_t l = 0;
-const listint_t *one *two;
+const listint_t *one * two;
 
 if (!head)
 return (0);

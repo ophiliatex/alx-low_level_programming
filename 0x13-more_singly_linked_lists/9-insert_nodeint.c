@@ -5,14 +5,14 @@
  * @head: head of node
  * @idx: index
  * @n: data to be added
- * 
- * Return: the address of the new node otherwise NULL 
+ *
+ * Return: the address of the new node otherwise NULL
 */
 
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-    listint_t *newNode, *tmp;
-unsigned int i = 0;
+	listint_t *newNode, *tmp;
+	unsigned int i = 0;
 
 if (head == NULL)
 return (NULL);

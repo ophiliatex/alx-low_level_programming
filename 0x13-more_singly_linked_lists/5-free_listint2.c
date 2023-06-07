@@ -3,7 +3,7 @@
 /**
  * free_listint2 - frees a list
  * @head: pointer to the head pointer
- * 
+ *
  * Return: void
 */
 

@@ -4,11 +4,10 @@
  * add_nodeint - new node to be added a list
  *
  * @head: pointer  to the  head pointer
- * 
+ * @n: data
  * Description: singly linked list node structure
- * 
  * Return: address to the new element otherwise, NULL
- * 
+ *
 */
 
 listint_t *add_nodeint(listint_t **head, const int n)

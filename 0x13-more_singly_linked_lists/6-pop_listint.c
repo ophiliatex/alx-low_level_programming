@@ -3,7 +3,7 @@
 /**
  * pop_listint - deletes the head node of a list
  *  @head: pointer to head node
- * 
+ *
  * Return: 0 if list is empty
 */
 
@@ -21,5 +21,4 @@ del = tmp->del;
 free(tmp);
 
 return (del);
-
 }
