@@ -10,27 +10,27 @@
 size_t print_listint_safe(const listint_t *head)
 {
 size_t l = 0;
-const listint_t *one * two;
+const listint_t *one, *two;
 
 if (!head)
 return (0);
 
 while (two && two->next)
 {
-printf("[%p] %d\n", (void *)first, first->n);
+printf("[%p] %d\n", (void *)one, one->n);
 l++;
 one = one->next;
 two = two->next->next;
 }
 
-printf("[%p] %d\n", (void *)first, first->n);
-i++;
+printf("[%p] %d\n", (void *)one, one->n);
+l++;
 
 if (two)
 {
-printf("-> [%p] %d\n", (void *)second, second->n);
+printf("-> [%p] %d\n", (void *)two, two->n);
 exit(98);
 }
 
-return (i);
+return (l);
 }

@@ -14,10 +14,10 @@ size_t i = 0;
 if (!h || !*h)
 return (0);
 
-while (tmp && tmp2 && tmp1->next)
+while (tmp && tmp1 && tmp1->next)
 {
 tmp = tmp->next;
-tmp2 = tmp1->next->next;
+tmp1 = tmp1->next->next;
 if (tmp == tmp1)
 {
 tmp = *h;
