@@ -85,11 +85,11 @@ return (fd);
 void copy_file(int fd_from, int fd_to)
 {
 int r, w;
-char buf[1024];
+char buffer[1024];
 
-while ((r = read(fd_from, buf, 1024)) > 0)
+while ((r = read(fd_from, buffer, 1024)) > 0)
 {
-w = write(fd_to, buf, r);
+w = write(fd_to, buffer, r);
 if (w == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd_to);
