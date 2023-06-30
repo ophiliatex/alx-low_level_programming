@@ -38,11 +38,11 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n);
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index);
 
+void freeListp(listp_t **head);
+free_Lstp(listp_t **head);
 listint_t *reverse_listint(listint_t **head);
 
 size_t print_listint_safe(const listint_t *head);
-void free_Lstp(listp_t **head);
 size_t free_listint_safe(listint_t **h);
-void freeListp(listp_t **head)
 listint_t *find_listint_loop(listint_t *head);
 #endif /*LISTS_H */

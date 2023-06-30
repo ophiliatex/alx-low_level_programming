@@ -9,14 +9,14 @@
 void freeListp(listp_t **head)
 {
 	list_t *temp;
-	list_t *cur;
+	list_t *curr;
 
 	if (head != NULL)
 	{
-		cur = *head;
+		curr = *head;
 		while ((temp = cur) != NULL)
 		{
-			cur = cur->next;
+			curr = cur->next;
 			free(temp);
 		}
 		*head = NULL;
@@ -45,7 +45,7 @@ hdptr = NULL;
 		if (new == NULL)
 			exit(98);
 
-		new->p = (void *)head;
+		new->p = *head;
 		new->next = hdptr;
 		hdptr = new;
 
@@ -56,13 +56,13 @@ hdptr = NULL;
 			add = add->next;
 			if (head == add->p)
 			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
+				printf("-> [%p] %d\n", *head, head->n);
 				freeListp(&hdptr);
 				return (l);
 			}
 		}
 
-		printf("[%p] %d\n", (void *)head, head->n);
+		printf("[%p] %d\n", (head, head->n);
 		head = head->next;
 		l++;
 	}
