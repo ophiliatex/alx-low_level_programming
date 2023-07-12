@@ -1,4 +1,8 @@
-#include "main.h"
+#include <elf.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,8 +13,8 @@ void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_abi(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
-void print_type(unsigned char *e_ident, unsigned int e_type);
-void print_entry(unsigned char *e_ident, unsigned long int e_entry);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
 /**
@@ -44,7 +48,7 @@ void print_magic(unsigned char *e_ident)
 {
 	int i;
 
-	printf(" Magic: ");
+	printf("  Magic:   ");
 
 	for (i = 0; i < EI_NIDENT; i++)
 	{
@@ -66,7 +70,7 @@ void print_magic(unsigned char *e_ident)
 
 void print_class(unsigned char *e_ident)
 {
-	printf(" Class: ");
+	printf(" Class:				");
 
 	switch (e_ident[EI_CLASS])
 	{
@@ -93,7 +97,7 @@ void print_class(unsigned char *e_ident)
 
 void print_data(unsigned char *e_ident)
 {
-	printf(" Data: ");
+	printf(" Data:				");
 
 	switch (e_ident[EI_DATA])
 	{
@@ -121,7 +125,8 @@ void print_data(unsigned char *e_ident)
 
 void print_version(unsigned char *e_ident)
 {
-	printf(" Version: %d", e_ident[EI_VERSION]);
+	printf("  Version:			%d",
+		e_ident[EI_VERSION]);
 
 	switch (e_ident[EI_VERSION])
 	{
@@ -142,7 +147,7 @@ void print_version(unsigned char *e_ident)
 
 void print_osabi(unsigned char *e_ident)
 {
-	printf(" OS/ABI: ");
+	printf("  OS/ABI:			");
 
 	switch (e_ident[EI_OSABI])
 	{
@@ -189,7 +194,7 @@ void print_osabi(unsigned char *e_ident)
 
 void print_abi(unsigned char *e_ident)
 {
-	printf(" ABI VERSION: %d\n", e_ident[EI_ABIVERSION]);
+	printf("  ABI VERSION:			%d\n", e_ident[EI_ABIVERSION]);
 }
 
 
@@ -199,12 +204,12 @@ void print_abi(unsigned char *e_ident)
  * @e_type:: ELF type
  */
 
-void print_type(unsigned char *e_ident, unsigned int e_type)
+void print_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
 
-	printf(" Type: ");
+	printf("  Type:				");
 
 	switch (e_type)
 	{
@@ -234,9 +239,9 @@ void print_type(unsigned char *e_ident, unsigned int e_type)
  * @e_entry: pointer to entry point
  */
 
-void print_entry(unsigned char *e_ident, unsigned long int e_entry)
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf(" Entry point address: ");
+	printf("  Entry point address:			");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
@@ -275,11 +280,11 @@ void close_elf(int elf)
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
-	int opn, rd;
+	int o, r;
 
-	opn = open(argv[1], O_RDONLY);
+	o = open(argv[1], O_RDONLY);
 
-	if (opn == -1)
+	if (o == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
@@ -288,16 +293,16 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	if (header == NULL)
 	{
-		close_elf(opn);
+		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	rd = read(opn, header, sizeof(Elf64_Ehdr));
+	r = read(o, header, sizeof(Elf64_Ehdr));
 
-	if (rd == -1)
+	if (r == -1)
 	{
 		free(header);
-		close_elf(opn);
+		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: '%s': No such file\n", argv[1]);
 		exit(98);
 	}
@@ -309,9 +314,9 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_version(header->e_ident);
 	print_abi(header->e_ident);
 	print_osabi(header->e_ident);
-	print_type(header->e_ident, header->e_type);
-	print_entry(header->e_ident, header->e_entry);
+	print_type(header->e_type, header->e_ident);
+	print_entry(header->e_entry, header->e_ident);
 	free(header);
-	close_elf(opn);
+	close_elf(o);
 	return (0);
 }
