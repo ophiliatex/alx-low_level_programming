@@ -10,7 +10,7 @@ void print_version(unsigned char *e_ident);
 void print_abi(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
 void print_type(unsigned char *e_ident, unsigned int e_type);
-void print_entry(unsigned char *e_ident, unsigned int e_entry);
+void print_entry(unsigned char *e_ident, unsigned long int e_entry);
 void close_elf(int elf);
 
 /**
@@ -24,10 +24,10 @@ void check_elf(unsigned char *e_ident)
 
 	for (i = 0; i < 4; i++)
 	{
-		if (e_ident[i]!= 127 &&
-			e_ident[i]!= 'E' &&
-			e_ident[i]!= 'L' &&
-			e_ident[i]!= 'F')
+		if (e_ident[i] != 127 &&
+			e_ident[i] != 'E' &&
+			e_ident[i] != 'L' &&
+			e_ident[i] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -93,7 +93,7 @@ void print_class(unsigned char *e_ident)
 
 void print_data(unsigned char *e_ident)
 {
-	printf("Data: ");
+	printf(" Data: ");
 
 	switch (e_ident[EI_DATA])
 	{
@@ -107,6 +107,9 @@ void print_data(unsigned char *e_ident)
 		case ELFDATA2MSB:
 			printf("2's complement, big endian\n");
 			break;
+
+		default:
+			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 
@@ -118,12 +121,12 @@ void print_data(unsigned char *e_ident)
 
 void print_version(unsigned char *e_ident)
 {
-	printf("Version: %d", e_ident[EI_VERSION]);
+	printf(" Version: %d", e_ident[EI_VERSION]);
 
 	switch (e_ident[EI_VERSION])
 	{
 		case EV_CURRENT:
-			printf("(current)\n");
+			printf(" (current)\n");
 			break;
 
 		default:
@@ -144,7 +147,7 @@ void print_osabi(unsigned char *e_ident)
 	switch (e_ident[EI_OSABI])
 	{
 		case ELFOSABI_NONE:
-			printf("UNIX-System V\n");
+			printf("UNIX - System V\n");
 			break;
 		case ELFOSABI_HPUX:
 			printf("UNIX - HP-UX\n");
@@ -173,7 +176,8 @@ void print_osabi(unsigned char *e_ident)
 		case ELFOSABI_STANDALONE:
 			printf("Standalone App\n");
 			break;
-		default: printf("<unknown: %x>\n", e_ident[EI_OSABI]);
+		default:
+			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
 }
 
@@ -230,21 +234,21 @@ void print_type(unsigned char *e_ident, unsigned int e_type)
  * @e_entry: pointer to entry point
  */
 
-void print_entry(unsigned char *e_ident, unsigned int e_entry)
+void print_entry(unsigned char *e_ident, unsigned long int e_entry)
 {
-	printf("Entry point address: ");
+	printf(" Entry point address: ");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
-		e_entry = ((e_entry << 8) & 0xFF00FF00)|
+		e_entry = ((e_entry << 8) & 0xFF00FF00) |
 			((e_entry >> 8) & 0xFF00FF);
-		e_entry = (e_entry << 16)|(e_entry >> 16);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
 	}
 	if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("%#x\n", (unsigned int)e_entry);
 
 	else
-		printf("%#x\n", e_entry);
+		printf("%#lx\n", e_entry);
 }
 
 /**
