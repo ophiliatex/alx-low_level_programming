@@ -9,7 +9,7 @@
   * @value: The value to search for.
   *
   * Return: If the value is not present, -1.
-  *         Otherwise, the index where the value is located.
+  *         else, the index where the value is located.
   *
   * Description: Prints the [sub]array being searched after each change.
   */
